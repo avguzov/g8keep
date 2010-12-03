@@ -1,4 +1,10 @@
 G8keep::Application.routes.draw do
+  get "pages/home"
+
+  get "pages/contact"
+
+  get "pages/about"
+
   get "home/index"
 
   # The priority is based upon order of creation:
