@@ -1,7 +1,13 @@
 G8keep::Application.routes.draw do
 
-  resources :users
+  resources :users do
+	member do
+		get :accessing, :accessors
+	end
+  end
+  
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :relationships, :only => [:create, :destroy]
   
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
@@ -10,6 +16,7 @@ G8keep::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/about',	:to => 'pages#about'
   match '/help',	:to => 'pages#help'
+  match '/requests', :to => 'pages#requests'
   
   root :to => 'pages#home'
   
@@ -63,7 +70,7 @@ G8keep::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "home#index"
+  
 
   # See how all your routes lay out with "rake routes"
 

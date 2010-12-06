@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
 	before_filter :correct_user, :only => [:edit, :update]
-	before_filter :admin_user, 	 :only => :edit
+	before_filter :admin_user, 	 :only => :destroy
   
   def index
 	@title = "All users"
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-	@title = @user.name
+	@title = "#{@user.first_name} #{@user.last_name}"
   end
   
   def new
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 	@user = User.new(params[:user])
 	if @user.save
 		sign_in @user
-		flash[:success] = "Welcome to the Sample App!"
+		flash[:success] = "Welcome to g8keep!"
 		redirect_to @user
 	else
 		@title = "Sign up"
@@ -54,6 +54,20 @@ class UsersController < ApplicationController
 	redirect_to users_path
   end
   
+  def accessing
+	@title = "Open Gates"
+	@user = User.find(params[:id])
+	@users = @user.accessing.paginate(:page => params[:page])
+	render 'show_access'
+  end
+  
+  def accessors
+    @title = "Open Gates"
+	@user = User.find(params[:id])
+	@users = @user.accessors.paginate(:page => params[:page])
+	render 'show_access'
+  end
+  
   private
   
 	def authenticate
@@ -63,6 +77,10 @@ class UsersController < ApplicationController
 	def correct_user
 		@user = User.find(params[:id])
 		redirect_to(root_path) unless current_user?(@user)
+	end
+	
+	def admin_user
+		redirect_to(root_path) unless current_user.admin?
 	end
 
 end

@@ -1,14 +1,30 @@
 <table class="profile" summary="Profile information">
   <tr>
     <td class="main">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </td>
+      <table class="contact_info">
+		<% unless (@user.personal_email.nil? || @user.personal_email == "") %>
+			<tr><td><strong>Personal Email: </strong> <%= @user.personal_email %></td></tr>
+		<% end %>
+		<% unless (@user.work_email.nil? || @user.work_email == "") %>
+			<tr><td><strong>Professional Email: </strong> <%= @user.work_email %></td></tr>
+		<% end %>
+		<% unless (@user.home_phone.nil? || @user.work_email == "") %>
+			<tr><td><strong>Home Phone: </strong> <%= @user.home_phone %></td></tr>
+		<% end %>
+		<% unless (@user.work_phone.nil? || @user.work_email == "") %>
+			<tr><td><strong>Work Phone: </strong> <%= @user.work_phone %></td></tr>
+		<% end %>
+		<% unless (@user.cell_phone.nil? || @user.work_email == "") %>
+			<tr><td><strong>Cell Phone: </strong> <%= @user.cell_phone %></td></tr>
+		<% end %>
+	  </table>
+	</td>
     <td class="sidebar round">
-      <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
+	  <%= gravatar_for @user %><br><br>
+      <strong>Name</strong> <%= "#{@user.first_name} #{@user.last_name}" %><br />
+      <strong>Username</strong> <%= "#{@user.username}" %>
+	  <%= render 'access_form' if signed_in? %>
+	  <%= render 'shared/stats' %>
     </td>
   </tr>
 </table>

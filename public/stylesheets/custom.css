@@ -183,3 +183,34 @@ ul.users {
   list-style: none;
 }
 
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+#left_info {
+	vertical-align: top;
+	width: 50%;
+}
+
+#right_info {
+	width: 50%;
+	background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
