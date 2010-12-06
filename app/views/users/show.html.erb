@@ -8,13 +8,13 @@
 		<% unless (@user.work_email.nil? || @user.work_email == "") %>
 			<tr><td><strong>Professional Email: </strong> <%= @user.work_email %></td></tr>
 		<% end %>
-		<% unless (@user.home_phone.nil? || @user.work_email == "") %>
+		<% unless (@user.home_phone.nil? || @user.home_phone == "") %>
 			<tr><td><strong>Home Phone: </strong> <%= @user.home_phone %></td></tr>
 		<% end %>
-		<% unless (@user.work_phone.nil? || @user.work_email == "") %>
+		<% unless (@user.work_phone.nil? || @user.work_phone == "") %>
 			<tr><td><strong>Work Phone: </strong> <%= @user.work_phone %></td></tr>
 		<% end %>
-		<% unless (@user.cell_phone.nil? || @user.work_email == "") %>
+		<% unless (@user.cell_phone.nil? || @user.cell_phone == "") %>
 			<tr><td><strong>Cell Phone: </strong> <%= @user.cell_phone %></td></tr>
 		<% end %>
 	  </table>
