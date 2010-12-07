@@ -1,19 +1,22 @@
 <% if signed_in? %>
-  <table class="front" summary="For signed-in users">
+<table class="front" summary="For signed-in users">
 	<tr>
-	  <td class="main"></td>
+	  <td class="main">	
+		<% form_tag results_path, :method => 'get' do %>
+			<p>
+				<%= text_field_tag :search %>
+				<%= submit_tag "Search Users", :name => nil %>
+			</p>
+		<% end %>
+	  </td>
 	  <td class="sidebar round">		
 		<%= render 'shared/user_info' %>
-        <%= render 'shared/stats' %>
       </td>
     </tr>
-  </table>
+ </table>
 <% else %>
-  <h1>g8keep</h1>
-	<p>
-	This is the home page for g8keep, the contact information
-	storage streamliner.
-	</p>
-  <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+	<script>window.location = "/signup";</script>
 <% end %>
+
+
 

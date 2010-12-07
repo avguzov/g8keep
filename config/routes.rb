@@ -2,7 +2,7 @@ G8keep::Application.routes.draw do
 
   resources :users do
 	member do
-		get :accessing, :accessors
+		get :accessing, :accessors, :requests
 	end
   end
   
@@ -12,11 +12,14 @@ G8keep::Application.routes.draw do
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/users/:id/accept/:request_id', :to => 'users#accept'
+  match 'users/:id/reject/:request_id', :to => 'users#reject'
   
   match '/contact', :to => 'pages#contact'
   match '/about',	:to => 'pages#about'
   match '/help',	:to => 'pages#help'
   match '/requests', :to => 'pages#requests'
+  match '/results',  :to => 'pages#results'
   
   root :to => 'pages#home'
   

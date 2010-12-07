@@ -1,9 +1,14 @@
-<h1>All users</h1>
+<h1>My Contacts</h1>
 
-<%= will_paginate %>
+<% unless @users.nil? %>
 
+<%= will_paginate @results %>
 <ul class="users">
-  <%= render @users %>
+	<%= render @results %>
 </ul>
+<%= will_paginate @results %>
+<% end %>
 
-<%= will_paginate %>
+
+
+

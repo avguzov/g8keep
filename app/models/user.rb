@@ -12,6 +12,7 @@
 
 require 'digest'
 class User < ActiveRecord::Base
+	
 	attr_accessor :password
 	attr_accessible :username, :first_name, :last_name, :home_phone, :work_phone, :cell_phone, :personal_email, :work_email, :password, :password_confirmation
 	
@@ -35,9 +36,9 @@ class User < ActiveRecord::Base
 	validates :cell_phone, 	   :format => { :with => phone_regex },
 							   :allow_nil => true,
 							   :allow_blank => true
-	validates :personal_email, :presence => true,
-							   :format => { :with => email_regex },
-							   :uniqueness => { :case_sensitive => false }
+	validates :personal_email, :format => { :with => email_regex },
+							   :uniqueness => { :case_sensitive => false },
+							   :presence => true
 	validates :work_email, :format => { :with => email_regex },
 						   :uniqueness => { :case_sensitive => false },
 						   :allow_nil => true,
@@ -50,6 +51,7 @@ class User < ActiveRecord::Base
 							 :dependent => :destroy
 	has_many :accessing, :through => :relationships, 
 						 :source => :accessed
+
 	has_many :reverse_relationships, :foreign_key => "accessed_id",
 									 :class_name => "Relationship",
 									 :dependent => :destroy
@@ -74,7 +76,11 @@ class User < ActiveRecord::Base
 	end
 	
 	def accessing?(accessed)
-		relationships.find_by_accessed_id(accessed)
+		relationships.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", accessed.id, self.id, true).first || relationships.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", accessed.id, self.id, true).first || (accessed.id == self.id)
+	end
+	
+	def requesting?(accessed)
+		relationships.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", accessed.id, self.id, false).first
 	end
 	
 	def access!(accessed)
@@ -84,6 +90,14 @@ class User < ActiveRecord::Base
 	def unaccess!(accessed)
 		relationships.find_by_accessed_id(accessed).destroy
 	end
+	
+	def self.search(search)
+		if search
+			where("username LIKE ? OR first_name LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+		else
+			find(:all)
+	end
+end
 	
 	private
 	

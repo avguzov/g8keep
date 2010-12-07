@@ -205,7 +205,9 @@ div.user_info span.user_name {
 	background-color: white;
 }
 
-
+#access_requested {
+	color:gray;
+}
 
 
 

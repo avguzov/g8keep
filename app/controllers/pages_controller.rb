@@ -6,13 +6,18 @@ class PagesController < ApplicationController
   def contact
 	@title = "Contact"
   end
-
+  
   def about
 	@title = "About"
   end
   
   def help
 	@title = "Help"
+  end
+  
+  def results
+	@title = "Search Results"
+	@users = User.search(params[:search])
   end
   
   def requests

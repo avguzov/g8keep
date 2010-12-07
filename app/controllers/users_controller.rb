@@ -1,15 +1,27 @@
 class UsersController < ApplicationController
-	before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
-	before_filter :correct_user, :only => [:edit, :update]
+	before_filter :authenticate, :only => [:index, :edit, :update, :destroy, :requests]
+	before_filter :correct_user, :only => [:edit, :update, :requests]
 	before_filter :admin_user, 	 :only => :destroy
   
   def index
-	@title = "All users"
-	@users = User.paginate(:page => params[:page])
+	@title = "My Contacts"
+	@users = []
+	contacteds = Relationship.where("accessed_id = ? AND accepted = ?", current_user.id, true).paginate(:page => params[:page])
+	contactors = Relationship.where("accessor_id = ? AND accepted = ?", current_user.id, true).paginate(:page => params[:page])
+	contacteds.each do |contacted|
+		@users.push(User.find_by_id(contacted.accessor_id))
+	end
+	contactors.each do |contactor|
+		@users.push(User.find_by_id(contactor.accessed_id))
+	end
+	
+	@results = @users.paginate(:page => params[:page])
   end
   
   def show
     @user = User.find(params[:id])
+	@cuser = current_user
+	@visible = Relationship.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", @user.id, @cuser.id, true).first || Relationship.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", @cuser.id, @user.id, true).first || (@cuser.id == @user.id)
 	@title = "#{@user.first_name} #{@user.last_name}"
   end
   
@@ -66,6 +78,27 @@ class UsersController < ApplicationController
 	@user = User.find(params[:id])
 	@users = @user.accessors.paginate(:page => params[:page])
 	render 'show_access'
+  end
+  
+  def requests
+	@title = "Gate Requests"
+	@user = User.find(params[:id])
+	@requests = Relationship.where(:accessed_id => params[:id], :accepted => false)
+	render 'requests'
+  end
+  
+  def accept
+	Relationship.where(:accessed_id => params[:id], :accessor_id => params[:request_id]).first.update_attribute(:accepted, true)
+	redirect_to(requests_user_path(current_user))
+  end
+  
+  def reject
+	Relationship.where(:accessed_id => params[:id], :accessor_id => params[:request_id]).first.destroy
+	redirect_to(requests_user_path(current_user))
+  end
+  
+  def search
+	@title = "Search Results"
   end
   
   private

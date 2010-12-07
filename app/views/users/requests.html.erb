@@ -1,0 +1,25 @@
+<table summary="Users requesting access">
+  <tr>
+    <td class="main">
+      <h1><%= @title %></h1>
+      
+        <ul class="users">
+			<% @requests.each do |request| %>
+				<li>
+					<%= gravatar_for User.find_by_id(request.accessor_id), :size => 30 %>
+					<strong><%= "#{User.find_by_id(request.accessor_id).first_name} #{User.find_by_id(request.accessor_id).last_name}" %></strong>
+					 | <%= link_to "Accept", "accept/" + request.accessor_id.to_s %>
+					 | <%= link_to "Reject", "reject/" + request.accessor_id.to_s %>
+				</li>
+			<% end %>
+		</ul>
+      
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @user.first_name + " " + @user.last_name %><br />
+      <strong> <%= link_to "Profile", user_path(@user) %></strong><br />
+    </td>
+  </tr>
+</table>
+
+		

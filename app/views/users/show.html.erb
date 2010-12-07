@@ -2,6 +2,8 @@
   <tr>
     <td class="main">
       <table class="contact_info">
+	    
+	    <% if @visible %>
 		<% unless (@user.personal_email.nil? || @user.personal_email == "") %>
 			<tr><td><strong>Personal Email: </strong> <%= @user.personal_email %></td></tr>
 		<% end %>
@@ -17,6 +19,7 @@
 		<% unless (@user.cell_phone.nil? || @user.cell_phone == "") %>
 			<tr><td><strong>Cell Phone: </strong> <%= @user.cell_phone %></td></tr>
 		<% end %>
+		<% end %>
 	  </table>
 	</td>
     <td class="sidebar round">
@@ -24,7 +27,6 @@
       <strong>Name</strong> <%= "#{@user.first_name} #{@user.last_name}" %><br />
       <strong>Username</strong> <%= "#{@user.username}" %>
 	  <%= render 'access_form' if signed_in? %>
-	  <%= render 'shared/stats' %>
     </td>
   </tr>
 </table>
