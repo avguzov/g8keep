@@ -8,7 +8,6 @@ gem 'rails', '3.0.3'
 
 gem 'gravatar_image_tag', '0.1.0'
 gem 'will_paginate', '3.0.pre2'
-gem 'websolr-acts_as_solr'
 
 # Use unicorn as the web server
 # gem 'unicorn'
