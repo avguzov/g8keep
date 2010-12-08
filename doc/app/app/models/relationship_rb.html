@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: relationship.rb [Rails Application Documentation]</title>
+
+	<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet" />
+
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">2010-12-07 19:53:47 -0500</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+The <a href="../../Relationship.html">Relationship</a> model links users
+through the following required variables:
+</p>
+<pre>
+ * accessor_id
+ * accessed_id
+ * accepted
+ 
+ An instance of this class is created when the logged-in user requests
+ access to another user's contact information.  At this point, the 
+ instance is created, but the accepted attribute is false.  If the 
+ requested user grants contact information access to the user who
+ put in the request, the accepted attribute becomes true, and both
+ users can see one another's contact information.  If the requested
+ user denies access, the Relationship instance is destroyed.</pre>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

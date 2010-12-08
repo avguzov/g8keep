@@ -1,3 +1,5 @@
+# Defines helper functions to be used for all views
+
 module ApplicationHelper
 
   # Return a title on a per-page basis.
@@ -10,6 +12,7 @@ module ApplicationHelper
     end
   end
   
+  # Returns the g8keep logo
   def logo
 	image_tag("logo.png", :alt => "g8keep", :class => "round")
   end

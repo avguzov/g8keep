@@ -1,6 +1,10 @@
 source 'http://rubygems.org'
 
+
+
 gem 'rails', '3.0.3'
+gem 'sms_fu'
+gem 'pony'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

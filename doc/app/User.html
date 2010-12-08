@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: User</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./app/models/user_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="app/models/user.rb">app/models/user.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">ActiveRecord::Base</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-authenticate">::authenticate</a></li>
+					
+					<li><a href="#method-c-authenticate_with_salt">::authenticate_with_salt</a></li>
+					
+					<li><a href="#method-c-search">::search</a></li>
+					
+					<li><a href="#method-i-access%21">#access!</a></li>
+					
+					<li><a href="#method-i-accessing%3F">#accessing?</a></li>
+					
+					<li><a href="#method-i-encrypt">#encrypt</a></li>
+					
+					<li><a href="#method-i-encrypt_password">#encrypt_password</a></li>
+					
+					<li><a href="#method-i-has_password%3F">#has_password?</a></li>
+					
+					<li><a href="#method-i-make_salt">#make_salt</a></li>
+					
+					<li><a href="#method-i-requesting%3F">#requesting?</a></li>
+					
+					<li><a href="#method-i-secure_hash">#secure_hash</a></li>
+					
+					<li><a href="#method-i-unaccess%21">#unaccess!</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./ApplicationController.html">ApplicationController</a></li>
+				
+					<li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
+				
+					<li><a href="./PagesController.html">PagesController</a></li>
+				
+					<li><a href="./Relationship.html">Relationship</a></li>
+				
+					<li><a href="./RelationshipsController.html">RelationshipsController</a></li>
+				
+					<li><a href="./SessionsController.html">SessionsController</a></li>
+				
+					<li><a href="./SessionsHelper.html">SessionsHelper</a></li>
+				
+					<li><a href="./User.html">User</a></li>
+				
+					<li><a href="./UsersController.html">UsersController</a></li>
+				
+					<li><a href="./UsersHelper.html">UsersHelper</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">User</h1>
+
+		<div id="description">
+			<p>
+<a href="User.html">User</a> records should require:
+</p>
+<pre>
+ * first_name
+ * last_name
+ * personal_email
+ * username
+ * password
+ All other fields are optional.
+ Each instance of the User class represents one user of the website
+ with their information stored in the User table.</pre>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="password-attribute-method" class="method-detail">
+				<a name="password"></a>
+				
+				<a name="password="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">password</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+specifies that password attribute is never stored directly in the table,
+because it&#8217;s first encrypted
+</p>
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="authenticate-method" class="method-detail ">
+				<a name="method-c-authenticate"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">authenticate</span><span
+						class="method-args">(username, submitted_password)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Checks to see whether a user exists in the database with the submitted
+username and password
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="authenticate-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 77</span>
+77:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">submitted_password</span>)
+78:                 <span class="ruby-identifier">user</span> = <span class="ruby-identifier">find_by_username</span>(<span class="ruby-identifier">username</span>)
+79:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>
+80:                 <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">has_password?</span>(<span class="ruby-identifier">submitted_password</span>)
+81:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="authenticate-with-salt-method" class="method-detail ">
+				<a name="method-c-authenticate_with_salt"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">authenticate_with_salt</span><span
+						class="method-args">(id, cookie_salt)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Checks to see whether a user exists in the database with the submitted user
+id and salt
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="authenticate-with-salt-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 84</span>
+84:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">authenticate_with_salt</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">cookie_salt</span>)
+85:                 <span class="ruby-identifier">user</span> = <span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">id</span>)
+86:                 (<span class="ruby-identifier">user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">salt</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">cookie_salt</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+87:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="search-method" class="method-detail ">
+				<a name="method-c-search"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">search</span><span
+						class="method-args">(search)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Checks to see whether the <a href="User.html">User</a> table has an users
+whose name attributes are similar to the contents of the parameter search
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="search-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 114</span>
+114:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">search</span>)
+115:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">search</span>
+116:                         <span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;username LIKE ? OR first_name LIKE ? OR last_name LIKE ?&quot;</span>, <span class="ruby-node">&quot;%#{search}%&quot;</span>, <span class="ruby-node">&quot;%#{search}%&quot;</span>, <span class="ruby-node">&quot;%#{search}%&quot;</span>)
+117:                 <span class="ruby-keyword kw">else</span>
+118:                         <span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>)
+119:         <span class="ruby-keyword kw">end</span>
+120: <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="access--method" class="method-detail ">
+				<a name="method-i-access%21"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">access!</span><span
+						class="method-args">(accessed)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Creates an instance of the <a href="Relationship.html">Relationship</a>
+model, linking the current user as the accessor user to the user in the
+paramater as the accessed user
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="access--source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 101</span>
+101:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">access!</span>(<span class="ruby-identifier">accessed</span>)
+102:                 <span class="ruby-identifier">relationships</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:accessed_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">accessed</span>.<span class="ruby-identifier">id</span>)
+103:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="accessing--method" class="method-detail ">
+				<a name="method-i-accessing%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">accessing?</span><span
+						class="method-args">(accessed)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Checks to see whether a user has access to the contact information of the
+user in the parameter
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="accessing--source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 90</span>
+90:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">accessing?</span>(<span class="ruby-identifier">accessed</span>)
+91:                 <span class="ruby-identifier">relationships</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-identifier">accessed</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">relationships</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-identifier">accessed</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">accessed</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>)
+92:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="has-password--method" class="method-detail ">
+				<a name="method-i-has_password%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">has_password?</span><span
+						class="method-args">(submitted_password)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Checks to see whether the encrypted version of the submitted password
+matches the stored encrypted password.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="has-password--source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 72</span>
+72:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_password?</span>(<span class="ruby-identifier">submitted_password</span>)
+73:                 <span class="ruby-identifier">encrypted_password</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">submitted_password</span>)
+74:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="requesting--method" class="method-detail ">
+				<a name="method-i-requesting%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">requesting?</span><span
+						class="method-args">(accessed)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Checks to see whether a user has requested access to the contact
+information of the user in the parameter
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="requesting--source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 95</span>
+95:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">requesting?</span>(<span class="ruby-identifier">accessed</span>)
+96:                 <span class="ruby-identifier">relationships</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-identifier">accessed</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">false</span>).<span class="ruby-identifier">first</span>
+97:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="unaccess--method" class="method-detail ">
+				<a name="method-i-unaccess%21"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">unaccess!</span><span
+						class="method-args">(accessed)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Destroys an instance of the <a href="Relationship.html">Relationship</a>
+model, unlinking the current user as the accessor user from the user in
+the paramater as the accessed user
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="unaccess--source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 107</span>
+107:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unaccess!</span>(<span class="ruby-identifier">accessed</span>)
+108:                 <span class="ruby-identifier">relationships</span>.<span class="ruby-identifier">find_by_accessed_id</span>(<span class="ruby-identifier">accessed</span>).<span class="ruby-identifier">destroy</span>
+109:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="encrypt-method" class="method-detail ">
+				<a name="method-i-encrypt"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">encrypt</span><span
+						class="method-args">(string)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Encrypts the string parameter, using the salt and the parameter string
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="encrypt-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 131</span>
+131:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">string</span>)
+132:                         <span class="ruby-identifier">secure_hash</span>(<span class="ruby-node">&quot;#{salt}--#{string}&quot;</span>)
+133:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="encrypt-password-method" class="method-detail ">
+				<a name="method-i-encrypt_password"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">encrypt_password</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Encrypts the password, encrypting the password with the salt
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="encrypt-password-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 125</span>
+125:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">encrypt_password</span>
+126:                         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span> = <span class="ruby-identifier">make_salt</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">new_record?</span>
+127:                         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">encrypted_password</span> = <span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">password</span>)
+128:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="make-salt-method" class="method-detail ">
+				<a name="method-i-make_salt"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">make_salt</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Makes a salt, encrypting a combination of the current time and the input
+password
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="make-salt-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 136</span>
+136:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">make_salt</span>
+137:                         <span class="ruby-identifier">secure_hash</span>(<span class="ruby-node">&quot;#{Time.now.utc}--#{password}&quot;</span>)
+138:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="secure-hash-method" class="method-detail ">
+				<a name="method-i-secure_hash"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">secure_hash</span><span
+						class="method-args">(string)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Encrypts a string parameter using SHA2 encryption
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="secure-hash-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 141</span>
+141:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">secure_hash</span>(<span class="ruby-identifier">string</span>)
+142:                         <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">string</span>)
+143:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+
