@@ -19,6 +19,8 @@ G8keep::Application.configure do
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
+  
+  ActionMailer::Base.delivery_method = :sendmail
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
