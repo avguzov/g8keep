@@ -1,8 +1,10 @@
 class UserMailer < ActionMailer::Base
   default :from => "from@example.com"
   
-  def welcome_email
-    mail(:to => "avguzov@gmail.com",
-         :subject => "Welcome to My Awesome Site")
+  def welcome_email(user)
+	@user = user
+	@url = "http://g8keep.com/signin"
+    mail(:to => user.personal_email,
+         :subject => "Welcome to g8keep")
   end
 end

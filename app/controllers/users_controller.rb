@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 	
 	if @user.save
 		sign_in @user
-		UserMailer.welcome_email.deliver
+		UserMailer.welcome_email(@user).deliver
 		flash[:success] = "Welcome to g8keep!"
 		redirect_to @user
 	else
