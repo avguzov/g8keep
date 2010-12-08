@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 						 :confirmation => true,
 						 :length => { :within => 6..40 }
 						 
-	validates :service_provider, :presence => true
+	validates :service_provider, :allow_nil => true, :allow_blank => true
 	
 	# The following lines explain the relationship between each instance of user and other 
 	# elements of the database
