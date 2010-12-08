@@ -40,6 +40,8 @@ G8keep::Application.configure do
   # Enable threaded mode
   # config.threadsafe!
   
+  config.action_mailer.default_url_options = { :host => 'empty-day-20.heroku.com' }
+  
   ActionMailer::Base.delivery_method = :sendmail
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
