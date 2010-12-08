@@ -108,6 +108,12 @@ class UsersController < ApplicationController
 	render 'requests'
   end
   
+  def information
+	user = User.find(params[:request_id])
+	UserMailer.text_information(user, current_user).deliver
+	redirect_to user_path(current_user)
+  end
+  
   # This action updates the accepted attribute of a Relationship instance to true
   # if the current user accepts a pending contact information request.
   def accept

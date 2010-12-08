@@ -14,6 +14,7 @@ G8keep::Application.routes.draw do
   match '/signout', :to => 'sessions#destroy'
   match '/users/:id/accept/:request_id', :to => 'users#accept'
   match 'users/:id/reject/:request_id', :to => 'users#reject'
+  match 'users/information/:request_id', :to => 'users#information'
   
   match '/contact', :to => 'pages#contact'
   match '/about',	:to => 'pages#about'

@@ -25,7 +25,10 @@
     <td class="sidebar round">
 	  <%= gravatar_for @user %><br><br>
       <strong>Name</strong> <%= "#{@user.first_name} #{@user.last_name}" %><br />
-      <strong>Username</strong> <%= "#{@user.username}" %>
+      <strong>Username</strong> <%= "#{@user.username}" %><br />
+	  <% if @visible %>
+		<strong><%= link_to "Get Information", "information/" + @user.id.to_s %></strong>
+	  <% end %>
 	  <%= render 'access_form' if signed_in? %>
     </td>
   </tr>
