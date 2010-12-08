@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101206012220) do
+ActiveRecord::Schema.define(:version => 20101208161543) do
 
   create_table "relationships", :force => true do |t|
     t.integer  "accessor_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20101206012220) do
     t.string   "home_phone"
     t.string   "work_phone"
     t.string   "cell_phone"
+    t.string   "service_provider"
   end
 
 end

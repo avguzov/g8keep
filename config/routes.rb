@@ -20,6 +20,7 @@ G8keep::Application.routes.draw do
   match '/help',	:to => 'pages#help'
   match '/requests', :to => 'pages#requests'
   match '/results',  :to => 'pages#results'
+  match '/providers', :to => 'pages#providers'
   
   root :to => 'pages#home'
   

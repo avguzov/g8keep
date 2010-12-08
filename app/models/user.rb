@@ -7,6 +7,7 @@ require 'digest'
 # * personal_email
 # * username
 # * password
+# * service provider
 # All other fields are optional.
 # Each instance of the User class represents one user of the website
 # with their information stored in the User table.
@@ -16,7 +17,8 @@ class User < ActiveRecord::Base
 	attr_accessor :password
 	
 	# specifies which User attributes can be accessed from a given user
-	attr_accessible :username, :first_name, :last_name, :home_phone, :work_phone, :cell_phone, :personal_email, :work_email, :password, :password_confirmation
+	attr_accessible :username, :first_name, :last_name, :home_phone, :work_phone, :cell_phone, :service_provider,
+					:personal_email, :work_email, :password, :password_confirmation
 	
 	# Regular expressions for ensuring that visitors to the website format their email addresses
 	# and phone numbers in a proper format
@@ -49,6 +51,8 @@ class User < ActiveRecord::Base
 	validates :password, :presence	=> true,
 						 :confirmation => true,
 						 :length => { :within => 6..40 }
+						 
+	validates :service_provider, :presence => true
 	
 	# The following lines explain the relationship between each instance of user and other 
 	# elements of the database

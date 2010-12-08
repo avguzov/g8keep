@@ -1,8 +1,8 @@
 # This class contains all the actions for views
 # that are part of the User model
-
+require 'sms_fu'
 class UsersController < ApplicationController
-
+	
 	# Limits which users can access certain actions and when
 	before_filter :authenticate, :only => [:index, :edit, :update, :destroy, :requests]
 	before_filter :correct_user, :only => [:edit, :update, :requests]

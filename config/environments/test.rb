@@ -25,7 +25,7 @@ G8keep::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
   
-  ActionMailer::Base.delivery_method = :sendmail
+  
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,

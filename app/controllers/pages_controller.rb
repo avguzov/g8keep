@@ -42,5 +42,9 @@ class PagesController < ApplicationController
   def requests
 	@title = "Requests"
   end
+  
+  def providers
+	@title = "Valid Service Providers"
+  end
 
 end
