@@ -3,6 +3,7 @@
     <td class="main">
       <table class="contact_info">
 	    
+		<!-- displays a user's contact information if current user has access to it -->
 	    <% if @visible %>
 		<% unless (@user.personal_email.nil? || @user.personal_email == "") %>
 			<tr><td><strong>Personal Email: </strong> <%= @user.personal_email %></td></tr>
@@ -23,9 +24,12 @@
 	  </table>
 	</td>
     <td class="sidebar round">
+	  <!-- displays the name and picture for the current profile's user -->
 	  <%= gravatar_for @user %><br><br>
       <strong>Name</strong> <%= "#{@user.first_name} #{@user.last_name}" %><br />
       <strong>Username</strong> <%= "#{@user.username}" %><br />
+	  <!-- displays a button which allows the current_user to send himself or herself
+		and SMS message with the contact information for the current profile's user -->
 	  <% if @visible %>
 		<strong><%= link_to "Get Information", "information/" + @user.id.to_s %></strong>
 	  <% end %>

@@ -1,6 +1,5 @@
 # This class contains all the actions for views
 # that are part of the User model
-require 'sms_fu'
 class UsersController < ApplicationController
 	
 	# Limits which users can access certain actions and when
@@ -35,6 +34,12 @@ class UsersController < ApplicationController
 	@cuser = current_user
 	@visible = Relationship.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", @user.id, @cuser.id, true).first || Relationship.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", @cuser.id, @user.id, true).first || (@cuser.id == @user.id)
 	@title = "#{@user.first_name} #{@user.last_name}"
+	if (@user.relationships.find_by_accessed_id(@cuser).nil?)
+		@rel = @cuser.relationships.find_by_accessed_id(@user)
+	else
+		@rel = @user.relationships.find_by_accessed_id(@cuser)
+	end
+		
   end
   
   # This action defines the view which allows a visitor to sign up on the
@@ -48,7 +53,8 @@ class UsersController < ApplicationController
   # This action saves the new user according to the fields that the 
   # visitor filled in on the sign-up page.  If the save is successful,
   # a welcome message flashes, and the user is redirected to his or
-  # her profile page.  Otherwise, the page is re-rendered and the 
+  # her profile page.  An email is sent to the user welcoming him or
+  # her to the website.  Otherwise, the page is re-rendered and the 
   # password field is cleared.
   def create
 	@user = User.new(params[:user])
@@ -105,9 +111,13 @@ class UsersController < ApplicationController
 	@title = "Gate Requests"
 	@user = User.find(params[:id])
 	@requests = Relationship.where(:accessed_id => params[:id], :accepted => false)
+	
 	render 'requests'
   end
   
+  # This action executes the function which sends an SMS message to the current user
+  # with the requested user's contact information, and then redirects the current
+  # user to his or her profile page.
   def information
 	user = User.find(params[:request_id])
 	UserMailer.text_information(user, current_user).deliver

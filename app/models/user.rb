@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
 	
 	# Checks to see whether a user has access to the contact information of the user in the parameter
 	def accessing?(accessed)
-		relationships.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", accessed.id, self.id, true).first || relationships.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", accessed.id, self.id, true).first || (accessed.id == self.id)
+		relationships.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", accessed.id, self.id, true).first || relationships.where("accessed_id = ? AND accessor_id = ? AND accepted = ?", self.id, accessed.id, true).first || (accessed.id == self.id)
 	end
 	
 	# Checks to see whether a user has requested access to the contact information of the user in the parameter

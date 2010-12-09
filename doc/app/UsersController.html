@@ -83,6 +83,8 @@
 					
 					<li><a href="#method-i-index">#index</a></li>
 					
+					<li><a href="#method-i-information">#information</a></li>
+					
 					<li><a href="#method-i-new">#new</a></li>
 					
 					<li><a href="#method-i-reject">#reject</a></li>
@@ -145,6 +147,8 @@
 				
 					<li><a href="./User.html">User</a></li>
 				
+					<li><a href="./UserMailer.html">UserMailer</a></li>
+				
 					<li><a href="./UsersController.html">UsersController</a></li>
 				
 					<li><a href="./UsersHelper.html">UsersHelper</a></li>
@@ -204,11 +208,11 @@ user accepts a pending contact information request.
 					<div class="method-source-code"
 						id="accept-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 111</span>
-111:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">accept</span>
-112:         <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accessed_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-value">:accessor_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:request_id</span>]).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">update_attribute</span>(<span class="ruby-value">:accepted</span>, <span class="ruby-keyword kw">true</span>)
-113:         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">requests_user_path</span>(<span class="ruby-identifier">current_user</span>))
-114:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 122</span>
+122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">accept</span>
+123:         <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accessed_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-value">:accessor_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:request_id</span>]).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">update_attribute</span>(<span class="ruby-value">:accepted</span>, <span class="ruby-keyword kw">true</span>)
+124:         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">requests_user_path</span>(<span class="ruby-identifier">current_user</span>))
+125:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -235,8 +239,9 @@ user accepts a pending contact information request.
 					<p>
 This action saves the new user according to the fields that the  visitor
 filled in on the sign-up page.  If the save is successful, a welcome
-message flashes, and the user is redirected to his or her profile page. 
-Otherwise, the page is re-rendered and the  password field is cleared.
+message flashes, and the user is redirected to his or her profile page.  An
+email is sent to the user welcoming him or her to the website.  Otherwise,
+the page is re-rendered and the  password field is cleared.
 </p>
 					
 
@@ -247,17 +252,19 @@ Otherwise, the page is re-rendered and the  password field is cleared.
     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 53</span>
 53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
 54:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
-55:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
-56:                 <span class="ruby-identifier">sign_in</span> <span class="ruby-ivar">@user</span>
-57:                 <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-value str">&quot;Welcome to g8keep!&quot;</span>
-58:                 <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@user</span>
-59:         <span class="ruby-keyword kw">else</span>
-60:                 <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Sign up&quot;</span>
-61:                 <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password</span> = <span class="ruby-keyword kw">nil</span>
-62:                 <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password_confirmation</span> = <span class="ruby-keyword kw">nil</span>
-63:                 <span class="ruby-identifier">render</span> <span class="ruby-value str">'new'</span>
-64:         <span class="ruby-keyword kw">end</span>
-65:   <span class="ruby-keyword kw">end</span></pre>
+55:         
+56:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+57:                 <span class="ruby-identifier">sign_in</span> <span class="ruby-ivar">@user</span>
+58:                 <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">welcome_email</span>(<span class="ruby-ivar">@user</span>).<span class="ruby-identifier">deliver</span>
+59:                 <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-value str">&quot;Welcome to g8keep!&quot;</span>
+60:                 <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@user</span>
+61:         <span class="ruby-keyword kw">else</span>
+62:                 <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Sign up&quot;</span>
+63:                 <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password</span> = <span class="ruby-keyword kw">nil</span>
+64:                 <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password_confirmation</span> = <span class="ruby-keyword kw">nil</span>
+65:                 <span class="ruby-identifier">render</span> <span class="ruby-value str">'new'</span>
+66:         <span class="ruby-keyword kw">end</span>
+67:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -292,12 +299,12 @@ redirecting the user to the path for all users
 					<div class="method-source-code"
 						id="destroy-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 92</span>
-92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
-93:         <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">destroy</span>
-94:         <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-value str">&quot;User destroyed.&quot;</span>
-95:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">users_path</span>
-96:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 94</span>
+94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+95:         <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">destroy</span>
+96:         <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-value str">&quot;User destroyed.&quot;</span>
+97:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">users_path</span>
+98:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -331,11 +338,11 @@ information, specifying the title and the user by his or her id.
 					<div class="method-source-code"
 						id="edit-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 69</span>
-69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-70:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-71:         <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Edit user&quot;</span>
-72:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 71</span>
+71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+72:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+73:         <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Edit user&quot;</span>
+74:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -371,21 +378,61 @@ be paginated.
 					<div class="method-source-code"
 						id="index-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 14</span>
-14:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
-15:         <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;My Contacts&quot;</span>
-16:         <span class="ruby-ivar">@users</span> = []
-17:         <span class="ruby-identifier">contacteds</span> = <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accepted = ?&quot;</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">paginate</span>(<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
-18:         <span class="ruby-identifier">contactors</span> = <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">paginate</span>(<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
-19:         <span class="ruby-identifier">contacteds</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">contacted</span><span class="ruby-operator">|</span>
-20:                 <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">contacted</span>.<span class="ruby-identifier">accessor_id</span>))
-21:         <span class="ruby-keyword kw">end</span>
-22:         <span class="ruby-identifier">contactors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">contactor</span><span class="ruby-operator">|</span>
-23:                 <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">contactor</span>.<span class="ruby-identifier">accessed_id</span>))
-24:         <span class="ruby-keyword kw">end</span>
-25:         
-26:         <span class="ruby-ivar">@results</span> = <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">paginate</span>(<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
-27:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 13</span>
+13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+14:         <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;My Contacts&quot;</span>
+15:         <span class="ruby-ivar">@users</span> = []
+16:         <span class="ruby-identifier">contacteds</span> = <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accepted = ?&quot;</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">paginate</span>(<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
+17:         <span class="ruby-identifier">contactors</span> = <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">paginate</span>(<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
+18:         <span class="ruby-identifier">contacteds</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">contacted</span><span class="ruby-operator">|</span>
+19:                 <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">contacted</span>.<span class="ruby-identifier">accessor_id</span>))
+20:         <span class="ruby-keyword kw">end</span>
+21:         <span class="ruby-identifier">contactors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">contactor</span><span class="ruby-operator">|</span>
+22:                 <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">contactor</span>.<span class="ruby-identifier">accessed_id</span>))
+23:         <span class="ruby-keyword kw">end</span>
+24:         
+25:         <span class="ruby-ivar">@results</span> = <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">paginate</span>(<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
+26:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="information-method" class="method-detail ">
+				<a name="method-i-information"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">information</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+This action executes the function which sends an SMS message to the current
+user with the requested user&#8217;s contact information, and then
+redirects the current user to his or her profile page.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="information-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 114</span>
+114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">information</span>
+115:         <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:request_id</span>])
+116:         <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">text_information</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">deliver</span>
+117:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_path</span>(<span class="ruby-identifier">current_user</span>)
+118:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -420,11 +467,11 @@ the <a href="User.html">User</a> model
 					<div class="method-source-code"
 						id="new-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 43</span>
-43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
-44:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
-45:         <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Sign up&quot;</span>
-46:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 42</span>
+42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+43:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
+44:         <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Sign up&quot;</span>
+45:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -458,11 +505,11 @@ instance if the current user rejects a pending contact information request.
 					<div class="method-source-code"
 						id="reject-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 118</span>
-118:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reject</span>
-119:         <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accessed_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-value">:accessor_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:request_id</span>]).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">destroy</span>
-120:         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">requests_user_path</span>(<span class="ruby-identifier">current_user</span>))
-121:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 129</span>
+129:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reject</span>
+130:         <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accessed_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-value">:accessor_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:request_id</span>]).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">destroy</span>
+131:         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">requests_user_path</span>(<span class="ruby-identifier">current_user</span>))
+132:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -498,13 +545,13 @@ for the id of the user being accessed.
 					<div class="method-source-code"
 						id="requests-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 102</span>
-102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">requests</span>
-103:         <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Gate Requests&quot;</span>
-104:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-105:         <span class="ruby-ivar">@requests</span> = <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accessed_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-value">:accepted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
-106:         <span class="ruby-identifier">render</span> <span class="ruby-value str">'requests'</span>
-107:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 104</span>
+104:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">requests</span>
+105:         <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Gate Requests&quot;</span>
+106:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+107:         <span class="ruby-ivar">@requests</span> = <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accessed_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-value">:accepted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
+108:         <span class="ruby-identifier">render</span> <span class="ruby-value str">'requests'</span>
+109:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -540,13 +587,13 @@ information or if it&#8217;s the visitor&#8217;s own profile.
 					<div class="method-source-code"
 						id="show-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 33</span>
-33:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
-34:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-35:         <span class="ruby-ivar">@cuser</span> = <span class="ruby-identifier">current_user</span>
-36:         <span class="ruby-ivar">@visible</span> = <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-ivar">@cuser</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-ivar">@cuser</span>.<span class="ruby-identifier">id</span>, <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> (<span class="ruby-ivar">@cuser</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>)
-37:         <span class="ruby-ivar">@title</span> = <span class="ruby-node">&quot;#{@user.first_name} #{@user.last_name}&quot;</span>
-38:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 32</span>
+32:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+33:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+34:         <span class="ruby-ivar">@cuser</span> = <span class="ruby-identifier">current_user</span>
+35:         <span class="ruby-ivar">@visible</span> = <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-ivar">@cuser</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Relationship</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value str">&quot;accessed_id = ? AND accessor_id = ? AND accepted = ?&quot;</span>, <span class="ruby-ivar">@cuser</span>.<span class="ruby-identifier">id</span>, <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> (<span class="ruby-ivar">@cuser</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>)
+36:         <span class="ruby-ivar">@title</span> = <span class="ruby-node">&quot;#{@user.first_name} #{@user.last_name}&quot;</span>
+37:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -583,17 +630,17 @@ re-rendered.
 					<div class="method-source-code"
 						id="update-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 78</span>
-78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
-79:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-80:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
-81:                 <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-value str">&quot;Profile updated.&quot;</span>
-82:                 <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@user</span>
-83:         <span class="ruby-keyword kw">else</span>
-84:                 <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Edit user&quot;</span>
-85:                 <span class="ruby-identifier">render</span> <span class="ruby-value str">'edit'</span>
-86:         <span class="ruby-keyword kw">end</span>
-87:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 80</span>
+80:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+81:         <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+82:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
+83:                 <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-value str">&quot;Profile updated.&quot;</span>
+84:                 <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@user</span>
+85:         <span class="ruby-keyword kw">else</span>
+86:                 <span class="ruby-ivar">@title</span> = <span class="ruby-value str">&quot;Edit user&quot;</span>
+87:                 <span class="ruby-identifier">render</span> <span class="ruby-value str">'edit'</span>
+88:         <span class="ruby-keyword kw">end</span>
+89:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -632,10 +679,10 @@ Checks if the current user is an administrator
 					<div class="method-source-code"
 						id="admin-user-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 133</span>
-133:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">admin_user</span>
-134:                 <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_path</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">admin?</span>
-135:         <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 144</span>
+144:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">admin_user</span>
+145:                 <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_path</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">admin?</span>
+146:         <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -669,11 +716,11 @@ is being requested.
 					<div class="method-source-code"
 						id="correct-user-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 127</span>
-127:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">correct_user</span>
-128:                 <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-129:                 <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_path</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_user?</span>(<span class="ruby-ivar">@user</span>)
-130:         <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/users_controller.rb, line 138</span>
+138:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">correct_user</span>
+139:                 <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+140:                 <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_path</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_user?</span>(<span class="ruby-ivar">@user</span>)
+141:         <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

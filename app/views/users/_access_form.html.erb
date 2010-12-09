@@ -1,8 +1,11 @@
+<!-- partial for determining whether to let the current user
+	create a relationship, delete a relationship, or let the
+	user know that a relationship is pending -->
 <% unless current_user?(@user) %>
   <div id="access_form">
-  <% if current_user.accessing?(@user) %>
+  <% if @visible %>
     <%= render 'unaccess' %>
-  <% elsif current_user.requesting?(@user) %>
+  <% elsif @rel %>
 	<div id="access_requested">Access requested</div>
   <% else %>
     <%= render 'access' %>

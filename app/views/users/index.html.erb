@@ -1,10 +1,11 @@
+<!-- lists all of the current user's contacts -->
 <h1>My Contacts</h1>
 
 <% unless @users.nil? %>
 
 <%= will_paginate @results %>
 <ul class="users">
-	<%= render @results %>
+	<strong><%= render @results %></strong>
 </ul>
 <%= will_paginate @results %>
 <% end %>

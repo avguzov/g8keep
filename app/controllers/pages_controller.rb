@@ -43,6 +43,9 @@ class PagesController < ApplicationController
 	@title = "Requests"
   end
   
+  # This action defines the view for the page which displays
+  # the valid service providers that users may have for their
+  # cell phones, and specifies the page's title
   def providers
 	@title = "Valid Service Providers"
   end

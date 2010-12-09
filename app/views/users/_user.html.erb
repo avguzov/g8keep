@@ -1,3 +1,6 @@
+<!-- partial which organizes how each user is presented,
+	and creates an option to delete a user if the current user
+	is an administrator -->
 <li>
     <%= gravatar_for user, :size => 30 %>
     <%= link_to user.first_name + " " + user.last_name, user %>

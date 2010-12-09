@@ -1,22 +1,22 @@
 <!DOCTYPE html>
+<!-- displays content of SMS message sent to a user when requesting another
+	user's contact information -->
 <html>
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <ul>
-		<li>Name: <%= "#{@requested_user.first_name} #{@requested_user.last_name}" %></li>
-		<li>Personal Email: <%= "#{@requested_user.personal_email}" %></li>
-		<% unless "#{@requested_user.work_email}" == "" %>
-			<li>Professional Email: <%= "#{@requested_user.work_email}" %></li>
-		<% end %>
-		<% unless "#{@requested_user.home_phone}" == "" %>
-			<li>Home Phone: <%= "#{@requested_user.home_phone}" %></li>
-		<% end %>
-		<% unless "#{@requested_user.work_phone}" == "" %>
-			<li>Professional Phone: <%= "#{@requested_user.work_phone}" %></li>
-		<% end %>
-		<li>Cell Phone: <%= "#{@requested_user.cell_phone}" %></li>
-	</ul>	
+    Name: <%= "#{@requested_user.first_name} #{@requested_user.last_name}" %><br />
+	Personal Email: <%= "#{@requested_user.personal_email}" %><br />
+	<% unless "#{@requested_user.work_email}" == "" %>
+		Professional Email: <%= "#{@requested_user.work_email}" %><br />
+	<% end %>
+	<% unless "#{@requested_user.home_phone}" == "" %>
+		Home Phone: <%= "#{@requested_user.home_phone}" %><br />
+	<% end %>
+	<% unless "#{@requested_user.work_phone}" == "" %>
+		Professional Phone: <%= "#{@requested_user.work_phone}" %><br />
+	<% end %>
+	Cell Phone: <%= "#{@requested_user.cell_phone}" %>
   </body>
 </html>

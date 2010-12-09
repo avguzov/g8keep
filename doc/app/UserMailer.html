@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: UserMailer</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./app/mailers/user_mailer_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="app/mailers/user_mailer.rb">app/mailers/user_mailer.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">ActionMailer::Base</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-i-text_information">#text_information</a></li>
+					
+					<li><a href="#method-i-welcome_email">#welcome_email</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./ApplicationController.html">ApplicationController</a></li>
+				
+					<li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
+				
+					<li><a href="./PagesController.html">PagesController</a></li>
+				
+					<li><a href="./Relationship.html">Relationship</a></li>
+				
+					<li><a href="./RelationshipsController.html">RelationshipsController</a></li>
+				
+					<li><a href="./SessionsController.html">SessionsController</a></li>
+				
+					<li><a href="./SessionsHelper.html">SessionsHelper</a></li>
+				
+					<li><a href="./User.html">User</a></li>
+				
+					<li><a href="./UserMailer.html">UserMailer</a></li>
+				
+					<li><a href="./UsersController.html">UsersController</a></li>
+				
+					<li><a href="./UsersHelper.html">UsersHelper</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">UserMailer</h1>
+
+		<div id="description">
+			<p>
+This class contains the actions which send emails and text messages to
+users using ActionMailer
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="text-information-method" class="method-detail ">
+				<a name="method-i-text_information"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">text_information</span><span
+						class="method-args">(requested_user, user)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+This function sends an SMS message to a user passed as a paramater of the
+contact information for the requested user passed as another parameter
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="text-information-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/mailers/user_mailer.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">text_information</span>(<span class="ruby-identifier">requested_user</span>, <span class="ruby-identifier">user</span>)
+21:         <span class="ruby-ivar">@requested_user</span> = <span class="ruby-identifier">requested_user</span>
+22:         <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Alltell&quot;</span>)
+23:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@message.alltel.com&quot;</span>
+24:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;AT&amp;T&quot;</span>)
+25:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@txt.att.net&quot;</span>
+26:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;MetroPCS&quot;</span>)
+27:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@mymetropcs.com&quot;</span>
+28:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Nextel&quot;</span>)
+29:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@messaging.nextel.com&quot;</span>
+30:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Powertel&quot;</span>)
+31:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@ptel.net&quot;</span>
+32:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Sprint&quot;</span>)
+33:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@messaging.sprintpcs.com&quot;</span>
+34:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;SunCom&quot;</span>)
+35:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@tms.suncom.com&quot;</span>
+36:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;T-Mobile&quot;</span>)
+37:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@tmomail.net&quot;</span>
+38:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;US Cellular&quot;</span>)
+39:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@email.uscc.net&quot;</span>
+40:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Verizon&quot;</span>)
+41:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@vtext.com&quot;</span>
+42:         <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">service_provider</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Virgin Mobile&quot;</span>)
+43:                 <span class="ruby-identifier">address</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cell_phone</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;@vmobl.com&quot;</span>
+44:         <span class="ruby-keyword kw">end</span>
+45:         <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">address</span>,
+46:                  <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Contact Information&quot;</span>)
+47:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="welcome-email-method" class="method-detail ">
+				<a name="method-i-welcome_email"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">welcome_email</span><span
+						class="method-args">(user)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+This function sends a welcome email to the user passed as a parameter
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="welcome-email-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/mailers/user_mailer.rb, line 10</span>
+10:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">welcome_email</span>(<span class="ruby-identifier">user</span>)
+11:         <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+12:         <span class="ruby-ivar">@url</span> = <span class="ruby-value str">&quot;http://g8keep.com/signin&quot;</span>
+13:     <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">personal_email</span>,
+14:          <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Welcome to g8keep&quot;</span>)
+15:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

@@ -1,17 +1,12 @@
 Name: <%= "#{@requested_user.first_name} #{@requested_user.last_name}" %>
-
 Personal Email: <%= "#{@requested_user.personal_email}" %>
-
 <% unless "#{@requested_user.work_email}" == "" %>
 Professional Email: <%= "#{@requested_user.work_email}" %>
 <% end %>
-
 <% unless "#{@requested_user.home_phone}" == "" %>
 Home Phone: <%= "#{@requested_user.home_phone}" %>
 <% end %>
-
 <% unless "#{@requested_user.work_phone}" == "" %>
 Professional Phone: <%= "#{@requested_user.work_phone}" %>
 <% end %>
-
 Cell Phone: <%= "#{@requested_user.cell_phone}" %>

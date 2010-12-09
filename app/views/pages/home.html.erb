@@ -1,3 +1,4 @@
+<!-- displays search bar if user is signed in -->
 <% if signed_in? %>
 <table class="front" summary="For signed-in users">
 	<tr>
@@ -14,6 +15,7 @@
       </td>
     </tr>
  </table>
+<!-- otherwise redirects visitor to the sign up page -->
 <% else %>
 	<script>window.location = "/signup";</script>
 <% end %>

@@ -1,3 +1,5 @@
+<!-- partial for creating the button to create a new relationship
+	between two users -->
 <%= form_for current_user.relationships.
 			build(:accessed_id => @user.id) do |f| %>
   <div><%= f.hidden_field :accessed_id %></div>

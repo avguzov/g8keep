@@ -1,3 +1,4 @@
+<!-- template for all views -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,9 +11,11 @@
     <div class="container">
       <%= render 'layouts/header' %>
       <section class="round">
+		<!-- section for flashed messages -->
 		<% flash.each do |key, value| %>
 			<div class="flash <%= key %>"><%= value %></div>
 		<% end %>
+		<!-- where content from different views is filled in -->
         <%= yield %>
       </section>
 	  <%= render 'layouts/footer' %>
